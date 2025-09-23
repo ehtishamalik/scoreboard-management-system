@@ -7,14 +7,14 @@
 
 <svelte:head>
 	<!-- Basic SEO -->
-	<title>Lycus Score – Tournament Management System</title>
+	<title>Scoreboard – Tournament Management System</title>
 	<meta
 		name="description"
-		content="Lycus Score is a powerful tournament management system for esports. Organize teams, schedule matches, track real-time scores, and view detailed statistics."
+		content="Scoreboard is a powerful tournament management system for esports. Organize teams, schedule matches, track real-time scores, and view detailed statistics."
 	/>
 	<meta
 		name="keywords"
-		content="tournament management, esports, team registration, match scheduling, real-time scores, tournament app, lycuscore"
+		content="tournament management, esports, team registration, match scheduling, real-time scores, tournament app, scoreboard"
 	/>
 	<meta name="author" content="Lycus Inc." />
 

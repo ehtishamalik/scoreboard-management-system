@@ -13,30 +13,12 @@
 	import { authClient } from '$lib/auth-client';
 
 	import type { LayoutData } from './$types';
-	import { toast } from 'svelte-sonner';
 
 	const { session } = page.data as LayoutData;
 
 	let { children } = $props();
 
 	let isLoading = $state<boolean>(false);
-
-	const handleOAuth = async () => {
-		try {
-			const { data, error } = await authClient.signIn.social({
-				provider: 'google'
-			});
-
-			if (error) {
-				toast.error(error.message || 'Failed to initiate Google OAuth. Please try again.');
-			}
-		} catch (error) {
-			console.error(error);
-			toast.error('An unexpected error occurred. Please try again.', {
-				description: (error as Error).message
-			});
-		}
-	};
 
 	const handleLogout = async () => {
 		isLoading = true;
@@ -69,10 +51,7 @@
 						{/if}
 					</Button>
 				{:else}
-					<Button type="button" variant="secondary" class="cursor-pointer" onclick={handleOAuth}>
-						<img src="/icons/google.svg" alt="Google Icon" />
-						Login</Button
-					>
+					<Button type="button" variant="secondary" href="/auth">Login</Button>
 				{/if}
 			</div>
 		</section>

@@ -10,6 +10,8 @@ import { nanoid } from '$lib/server/helpers/nanoid';
 import type { UserInsertModel, UserSelectModel } from '$lib/server/db/types';
 import type { RequestHandler } from './$types';
 import type { ApiResponse } from '$lib/types';
+import { authClient } from '$lib/auth-client';
+import { auth } from '$lib/server/auth';
 
 /**
  * Handles GET requests for users.
@@ -59,17 +61,17 @@ export const POST: RequestHandler = async ({ request }) => {
 	try {
 		const body = await request.json();
 
-		const userToAdd: UserInsertModel = {
-			id: nanoid(),
-			name: body.name,
-			email: body.email
-		};
+		const { user: userResult } = await auth.api.signUpEmail({
+			body: {
+				name: body.name,
+				email: body.email,
+				password: body.password
+			}
+		});
 
-		const result = await db.insert(user).values(userToAdd).returning();
-
-		const response: ApiResponse<UserSelectModel> = {
+		const response: ApiResponse<typeof userResult> = {
 			success: true,
-			data: result[0]
+			data: userResult
 		};
 		return json(response, { status: 200 });
 	} catch (error) {
