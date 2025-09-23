@@ -1,0 +1,37 @@
+{
+  "id": "/",
+  "name": "Lycus Score Tournament Management System",
+  "short_name": "lycuscore",
+  "start_url": "/",
+  "description": "Lycus Score is a tournament management system designed to streamline the organization and management of esports tournaments. It offers features such as team registration, match scheduling, real-time score updates, and detailed statistics tracking.",
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "screenshots": [
+    {
+      "src": "/screenshots/mobile.png",
+      "sizes": "428x926",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/screenshots/desktop.png",
+      "sizes": "1350x676",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}
