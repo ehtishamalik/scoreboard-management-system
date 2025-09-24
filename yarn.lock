@@ -842,10 +842,10 @@
     "@vercel/nft" "^0.30.0"
     esbuild "^0.25.4"
 
-"@sveltejs/kit@^2.22.0":
-  version "2.42.1"
-  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-2.42.1.tgz#674767ee4b3f9f4120f259adcd49f2deb8bfb050"
-  integrity sha512-SoWdb/OxEKHMlXZ78eNZa4pR1YdOGnUfcFj5NylJv+ZaTrnHK5xapw+7RJP2MiS1D4T+sEH25/tmMtmEl8p6VA==
+"@sveltejs/kit@^2.43.2":
+  version "2.43.2"
+  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-2.43.2.tgz#a634068bc0af466743a798088014c8e44f2b2f94"
+  integrity sha512-M27eBoqWmU7dEpotMGBaA1CK6Y/wK1b176mVOkrSJZwt17bk6Z1IjLQv0iuVYm7D8d1Z/I4HzJ3hSqy8auj1Sw==
   dependencies:
     "@standard-schema/spec" "^1.0.0"
     "@sveltejs/acorn-typescript" "^1.0.5"
