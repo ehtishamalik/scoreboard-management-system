@@ -5,6 +5,9 @@ A modern Progressive Web App (PWA) built with SvelteKit for managing tournaments
 > ⚡ This application was originally created for [**Lycus Inc.**](https://www.lycusinc.com) to streamline and digitize their tournament management process.
 > Designed with scalability in mind, it can be adapted for schools, sports clubs, and corporate events, offering organizers a seamless way to register teams, manage matches, and showcase live standings. Its intuitive interface ensures both administrators and participants have an engaging, user-friendly experience.
 
+<img width="1344" height="676" alt="image" src="https://github.com/user-attachments/assets/748f9452-0a8c-404d-a374-9010b9af5f8b" />
+
+
 ## Features
 
 - **Progressive Web App (PWA)** capabilities
