@@ -35,7 +35,7 @@ A modern Progressive Web App (PWA) built with SvelteKit for managing tournaments
 
 ### Prerequisites
 
-- Node.js (v18+ recommended)
+- Node.js (v22+ recommended)
 - Yarn or npm
 - PostgreSQL database
 
