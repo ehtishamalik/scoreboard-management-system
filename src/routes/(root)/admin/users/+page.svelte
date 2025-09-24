@@ -80,8 +80,8 @@
 			return;
 		}
 
-		if (!email.endsWith('@lycusinc.com')) {
-			toast.error('Email must be a @lycusinc.com address.');
+		if (!email.endsWith('@ehtishamalik.com')) {
+			toast.error('Email must be a @ehtishamalik.com address.');
 			return;
 		}
 
@@ -114,7 +114,6 @@
 <section class="w-full">
 	<header class="mb-2 flex items-center justify-between gap-2">
 		<h1 class=" text-2xl font-bold">User Management</h1>
-		<Switch />
 		<div class="flex items-center gap-2">
 			<Button variant="outline" size="icon" disabled={isLoading} onclick={getUsers}>
 				<RefreshIcon class={{ 'animate-spin': isLoading }} />
@@ -154,7 +153,7 @@
 								type="email"
 								id={`email-${id}`}
 								name="email"
-								placeholder="m@lycusinc.com"
+								placeholder="m@ehtishamalik.com"
 								autocomplete="off"
 								required
 							/>

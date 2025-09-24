@@ -181,7 +181,7 @@
 							bind:value={userToAdd}
 							disabled={isLoadingNonParticipation}
 						>
-							<Select.Trigger class="w-full">
+							<Select.Trigger class="w-full overflow-hidden text-ellipsis">
 								{selectedUsers}
 							</Select.Trigger>
 							<Select.Content>

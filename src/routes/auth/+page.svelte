@@ -14,8 +14,8 @@
 
 	const id = $props.id();
 
-	let userEmail = $state<string>('');
-	let userPassword = $state<string>('');
+	let userEmail = $state<string>('hannahward@ehtishamalik.com');
+	let userPassword = $state<string>('password1234');
 	let isLoading = $state<boolean>(false);
 	let showPassword = $state<boolean>(false);
 
@@ -54,8 +54,11 @@
 	<Card.Root class="w-full max-w-md">
 		<Card.Header class="text-center">
 			<Card.Title>Login to your account</Card.Title>
-			<Card.Description>Enter your email below to login to your scoreboard account</Card.Description
-			>
+			<Card.Description
+				>Enter your email below to login to your scoreboard account.
+				<br />
+				Just click login to continue, a demo account is pre-filled for you.
+			</Card.Description>
 		</Card.Header>
 		<Card.Content>
 			<div class="flex flex-col gap-4">

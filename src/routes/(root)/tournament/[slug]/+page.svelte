@@ -100,7 +100,7 @@
 		</p>
 	</header>
 {:else}
-	<section class="space-y-8">
+	<section class="space-y-12">
 		<header>
 			<div class="mb-2 flex items-center justify-between">
 				<h1 class="text-2xl font-bold">{currentTournament.name}</h1>
@@ -128,6 +128,8 @@
 					<h3 class="text-lg font-semibold">Semifinals</h3>
 					{#if semiFinals.length > 0}
 						<MatchTable matches={semiFinals} />
+					{:else}
+						<p class="text-center text-muted-foreground">To be announced.</p>
 					{/if}
 				</div>
 
@@ -135,6 +137,8 @@
 					<h3 class="text-lg font-semibold">Finals</h3>
 					{#if finals.length > 0}
 						<MatchTable matches={finals} />
+					{:else}
+						<p class="text-center text-muted-foreground">To be announced.</p>
 					{/if}
 				</div>
 			</section>

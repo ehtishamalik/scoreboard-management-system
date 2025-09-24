@@ -1,9 +1,9 @@
 {
   "id": "/",
-  "name": "Lycus Score Tournament Management System",
-  "short_name": "lycuscore",
+  "name": "Scoreboard Tournament Management System",
+  "short_name": "scoreboard",
   "start_url": "/",
-  "description": "Lycus Score is a tournament management system designed to streamline the organization and management of esports tournaments. It offers features such as team registration, match scheduling, real-time score updates, and detailed statistics tracking.",
+  "description": "Scoreboard is a tournament management system designed to streamline the organization and management of esports tournaments. It offers features such as team registration, match scheduling, real-time score updates, and detailed statistics tracking.",
   "lang": "en-US",
   "icons": [
     {

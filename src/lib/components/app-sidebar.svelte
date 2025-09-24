@@ -63,12 +63,11 @@
 
 <Sidebar.Root>
 	<Sidebar.SidebarHeader>
-		<img src="/logo.png" alt="company logo" class="dark:hidden" width={192} />
-		<img src="/logo_white.png" alt="company logo" class="hidden dark:block" width={192} />
+		<img src="/logo.png" alt="company logo" class="mx-auto mt-2 w-24 object-cover" width={96} />
 	</Sidebar.SidebarHeader>
 	<Sidebar.Content>
 		<Sidebar.Group>
-			<Sidebar.GroupLabel>Lycuscore</Sidebar.GroupLabel>
+			<Sidebar.GroupLabel>Scoreboard</Sidebar.GroupLabel>
 			<Sidebar.GroupContent>
 				<Sidebar.Menu>
 					{#each items as item (item.title)}

@@ -209,7 +209,7 @@
 					{#if selectedIndex !== null}
 						Click on another row to {isSwitchChecked ? 'swap' : 'insert'}
 					{:else}
-						{isSwitchChecked ? 'Swap' : 'Insert'} mode
+						{isSwitchChecked ? 'Swap' : 'Insert'} mode (Click on the grag icon to select a row)
 					{/if}
 				</Label>
 				<Switch id="dragType" bind:checked={isSwitchChecked} />

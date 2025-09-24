@@ -1,6 +1,9 @@
 # Scoreboard Management System
 
-A modern Progressive Web App (PWA) built with SvelteKit for managing tournaments, teams, matches, and user authentication. It leverages modern technologies like SvelteKit, Drizzle ORM, Postgres, TailwindCSS, and authentication services for a robust, scalable, and secure experience.
+A modern Progressive Web App (PWA) built with SvelteKit for managing tournaments, teams, matches, and user authentication. It leverages modern technologies like SvelteKit, Drizzle ORM, Postgres, TailwindCSS, and authentication services for a robust, scalable, and secure experience. [**Visit the app**](https://score.ehtishamalik.com)
+
+> ⚡ This application was originally created for [**Lycus Inc.**](https://www.lycusinc.com) to streamline and digitize their tournament management process.
+> Designed with scalability in mind, it can be adapted for schools, sports clubs, and corporate events, offering organizers a seamless way to register teams, manage matches, and showcase live standings. Its intuitive interface ensures both administrators and participants have an engaging, user-friendly experience.
 
 ## Features
 
@@ -35,18 +38,19 @@ A modern Progressive Web App (PWA) built with SvelteKit for managing tournaments
 
 ### Installation
 
-1. Clone the repository:
+1. Fork the repository.
+2. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/scoreboard-management-system.git
    cd scoreboard-management-system
    ```
-2. Install dependencies:
+3. Install dependencies:
    ```bash
    yarn install
    # or
    npm install
    ```
-3. Fill in the following environment variables in your `.env` file:
+4. Fill in the following environment variables in your `.env` file:
    - `DATABASE_URL` (Postgres connection string)
    - `AUTH_SECRET` (authentication secret)
    - `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` (for Google OAuth)
@@ -128,6 +132,28 @@ This application is built as a Progressive Web App, which means:
 ## Deployment
 
 Configured for Vercel deployment via `@sveltejs/adapter-vercel`. See `svelte.config.js` for adapter settings.
+
+## Default Accounts
+
+#### You can login with any of the following demo accounts:
+
+Default password is: password1234
+
+### Admin User
+
+- Email: hannahward@ehtishamalik.com
+
+### Committee User
+
+- Email: emilycooper@ehtishamalik.com
+- Email: laurenscott@ehtishamalik.com
+
+### Regular User
+
+- Email: ethanparker@ehtishamalik.com
+- Email: emmahughes@ehtishamalik.com
+
+There are many regular users. You can see there emails from the admin panel.
 
 ## License
 
