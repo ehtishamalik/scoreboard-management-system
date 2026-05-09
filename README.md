@@ -7,7 +7,6 @@ A modern Progressive Web App (PWA) built with SvelteKit for managing tournaments
 
 <img width="1344" height="676" alt="image" src="https://github.com/user-attachments/assets/748f9452-0a8c-404d-a374-9010b9af5f8b" />
 
-
 ## Features
 
 - **Progressive Web App (PWA)** capabilities
@@ -19,6 +18,7 @@ A modern Progressive Web App (PWA) built with SvelteKit for managing tournaments
 - Role-based access control (Admin, Committee, User)
 - Tournament, team, and match management
 - Standings and statistics API
+- Dashboard for statistics
 - Responsive UI with TailwindCSS
 
 ## Tech Stack
@@ -27,7 +27,7 @@ A modern Progressive Web App (PWA) built with SvelteKit for managing tournaments
 - TailwindCSS
 - Drizzle ORM
 - Postgres (Neon serverless recommended)
-- OAuth Authentication
+- Email/Password Auth
 - Service Workers (PWA)
 - Vite
 
@@ -36,8 +36,8 @@ A modern Progressive Web App (PWA) built with SvelteKit for managing tournaments
 ### Prerequisites
 
 - Node.js (v22+ recommended)
-- Yarn or npm
-- PostgreSQL database
+- Bun JS runtime
+- PostgreSQL database (Neon DB)
 
 ### Installation
 
@@ -49,23 +49,25 @@ A modern Progressive Web App (PWA) built with SvelteKit for managing tournaments
    ```
 3. Install dependencies:
    ```bash
-   yarn install
-   # or
-   npm install
+   bun install
    ```
 4. Fill in the following environment variables in your `.env` file:
    - `DATABASE_URL` (Postgres connection string)
-   - `AUTH_SECRET` (authentication secret)
-   - `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` (for Google OAuth)
+   - `BETTER_AUTH_SECRET` (authentication secret)
+   - `PUBLIC_VAPID_KEY` and `PRIVATE_VAPID_KEY` (for push notifications)
 
 ### Database Setup
 
 Run migrations:
 
 ```bash
-yarn db:migrate
-# or
-npm run db:migrate
+bun run db:migrate
+```
+
+Seed the DB with mock Data:
+
+```bash
+bun run seed
 ```
 
 ## Development
@@ -73,9 +75,7 @@ npm run db:migrate
 Start the development server:
 
 ```bash
-yarn dev
-# or
-npm run dev
+bun run dev
 ```
 
 ## Build & Preview
@@ -83,17 +83,13 @@ npm run dev
 Build for production:
 
 ```bash
-yarn build
-# or
-npm run build
+bun run build
 ```
 
 Preview production build:
 
 ```bash
-yarn preview
-# or
-npm run preview
+bun run preview
 ```
 
 ## Scripts
@@ -131,6 +127,8 @@ This application is built as a Progressive Web App, which means:
 
 - `DATABASE_URL`: NeonDB Postgres connection string
 - `BETTER_AUTH_SECRET`: Auth secret
+- `PUBLIC_VAPID_KEY`: Vapid key
+- `PRIVATE_VAPID_KEY`: Vapid key
 
 ## Deployment
 
@@ -144,22 +142,22 @@ Default password is: password1234
 
 ### Admin User
 
-- Email: hannahward@ehtishamalik.com
+- Email: admin@ehtishamalik.com
 
 ### Committee User
 
-- Email: emilycooper@ehtishamalik.com
-- Email: laurenscott@ehtishamalik.com
+- Email: committee1@ehtishamalik.com
+- Email: committee2@ehtishamalik.com
 
 ### Regular User
 
-- Email: ethanparker@ehtishamalik.com
-- Email: emmahughes@ehtishamalik.com
+- Email: john.smith@example.com
+- Email: emma.johnson@example.com
 
 There are many regular users. You can see there emails from the admin panel.
 
 ## License
 
-Copyright (c) 2025 ehtishamalik
+Copyright (c) 2026 ehtishamalik
 
 This project is proprietary and confidential. Unauthorized copying, distribution, or use is strictly prohibited.
