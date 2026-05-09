@@ -8,6 +8,34 @@
       "when": 1757915622045,
       "tag": "0000_yellow_hydra",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1759340185536,
+      "tag": "0001_fluffy_dazzler",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1759948728602,
+      "tag": "0002_long_omega_sentinel",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1761196115184,
+      "tag": "0003_wandering_kabuki",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1762090706057,
+      "tag": "0004_same_mikhail_rasputin",
+      "breakpoints": true
     }
   ]
 }
