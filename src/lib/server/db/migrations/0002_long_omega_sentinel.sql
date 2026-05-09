@@ -1,0 +1,1 @@
+ALTER TABLE "tournament" ADD COLUMN "is_started" boolean DEFAULT false NOT NULL;

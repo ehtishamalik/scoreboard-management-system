@@ -14,48 +14,64 @@ const adminRole: RoleType[] = ['ADMIN'];
 const committeeRole: RoleType[] = ['COMMITTEE', 'ADMIN'];
 
 export const handle: Handle = async ({ event, resolve }) => {
-	const session = await auth.api.getSession({
-		headers: event.request.headers
-	});
+  const { pathname } = event.url;
+  const method = event.request.method;
 
-	if (session) {
-		event.locals = {
-			...event.locals,
-			session: session.session,
-			user: session.user
-		};
-	}
+  const session = await auth.api.getSession({
+    headers: event.request.headers
+  });
 
-	// Middleware-like check
-	const { pathname } = event.url;
-	const method = event.request.method;
+  if (session) {
+    event.locals = {
+      ...event.locals,
+      session: session.session,
+      user: session.user
+    };
+  }
 
-	// If it's one of the protected APIs AND not a GET request
-	if (
-		protectedCommitteeApiRoutes.some((route) => pathname.startsWith(route)) &&
-		protectedMethods.has(method)
-	) {
-		if (!session || !committeeRole.includes(session.user.role)) {
-			const response: ApiResponse<null> = {
-				success: false,
-				error: { cause: 'Forbidden', message: 'You do not have permission to perform this action.' }
-			};
-			return new Response(JSON.stringify(response), { status: 403 });
-		}
-	}
+  // Logging: method, path, user info, and body (if applicable)
+  if (protectedMethods.has(method)) {
+    let bodyData: any = null;
+    try {
+      const clone = event.request.clone();
+      const contentType = clone.headers.get('content-type');
 
-	if (
-		protectedAdminApiRoutes.some((route) => pathname.startsWith(route)) &&
-		protectedMethods.has(method)
-	) {
-		if (!session || !adminRole.includes(session.user.role)) {
-			const response: ApiResponse<null> = {
-				success: false,
-				error: { cause: 'Forbidden', message: 'You do not have permission to perform this action.' }
-			};
-			return new Response(JSON.stringify(response), { status: 403 });
-		}
-	}
+      bodyData = await clone.json();
+    } catch (error) {
+      bodyData = '[Error parsing body]';
+    }
 
-	return svelteKitHandler({ event, resolve, auth, building });
+    console.log(
+      `[${new Date().toISOString()}] ${method} ${pathname} | User: ${session?.user?.name} | Body: ${bodyData ? JSON.stringify(bodyData) : 'N/A'}`
+    );
+  }
+
+  // If it's one of the protected APIs AND not a GET request
+  if (
+    protectedCommitteeApiRoutes.some((route) => pathname.startsWith(route)) &&
+    protectedMethods.has(method)
+  ) {
+    if (!session || !committeeRole.includes(session.user.role)) {
+      const response: ApiResponse<null> = {
+        success: false,
+        error: { cause: 'Forbidden', message: 'You do not have permission to perform this action.' }
+      };
+      return new Response(JSON.stringify(response), { status: 403 });
+    }
+  }
+
+  if (
+    protectedAdminApiRoutes.some((route) => pathname.startsWith(route)) &&
+    protectedMethods.has(method)
+  ) {
+    if (!session || !adminRole.includes(session.user.role)) {
+      const response: ApiResponse<null> = {
+        success: false,
+        error: { cause: 'Forbidden', message: 'You do not have permission to perform this action.' }
+      };
+      return new Response(JSON.stringify(response), { status: 403 });
+    }
+  }
+
+  return svelteKitHandler({ event, resolve, auth, building });
 };

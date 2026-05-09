@@ -1,67 +1,61 @@
 <script lang="ts">
-	import * as Card from '$lib/components/ui/card/index.js';
-	import TournamentCard from './tournament-card.svelte';
+  import TournamentCard from './tournament-card.svelte';
+  import HeadingCreator from '$lib/components/heading-creator.svelte';
+  import NotAvailableBanner from '$lib/components/not-available-banner.svelte';
+  import Badge from '$lib/components/ui/badge/badge.svelte';
+  import CompleteTournamentCard from '$lib/components/complete-tournament-card.svelte';
 
-	import { page } from '$app/state';
-	import { formateDate } from '$lib/utils';
+  import { page } from '$app/state';
 
-	import type { PageData } from './$types';
+  import type { PageData } from './$types';
 
-	const { session, tournaments } = page.data as PageData;
+  const { session, tournaments } = page.data as PageData;
 
-	const activeTournaments = $derived(tournaments.filter((t) => t.isActive));
-	const completedTournaments = $derived(tournaments.filter((t) => !t.isActive));
+  const activeTournaments = $derived(tournaments.filter((t) => t.isActive));
+  const completedTournaments = $derived(tournaments.filter((t) => !t.isActive));
 </script>
 
-<section>
-	<h1 class="mb-2 text-2xl font-bold">
-		{session ? `Welcome ${session.user.name}` : 'Hello! Guest'}
-	</h1>
-	<p class="mb-6 text-muted-foreground">List of active tournaments</p>
-	{#if activeTournaments.length === 0}
-		<div
-			class="mb-12 flex flex-col items-center justify-center rounded-lg border border-dashed p-8"
-		>
-			<p class="mb-2 text-center text-lg text-muted-foreground">
-				<em>No active tournaments available at the moment.</em>
-			</p>
-			<p class="text-center text-sm text-muted-foreground">
-				Please check back later for upcoming tournaments.
-			</p>
-		</div>
-	{:else}
-		<section
-			class="mb-12 block grid-cols-[repeat(auto-fit,_minmax(500px,_1fr))] gap-6 space-y-6 lg:grid lg:space-y-0"
-		>
-			{#each activeTournaments as tournament (tournament.id)}
-				<TournamentCard {tournament} {session} />
-			{/each}
-		</section>
-	{/if}
-	{#if completedTournaments.length > 0}
-		<p class="mb-6 text-muted-foreground">List of completed tournaments</p>
-		<section class="grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-6">
-			{#each completedTournaments as tournament (tournament.id)}
-				<Card.Root>
-					<Card.Header>
-						<Card.Title>
-							<h2 class="text-xl underline-offset-4 hover:underline">
-								<a href={`/tournament/${tournament.slug}`}>{tournament.name}</a>
-							</h2>
-						</Card.Title>
-						<Card.Description>
-							<p>
-								{tournament.startDate ? formateDate(tournament.startDate) : 'No Start Date'}
-								—
-								{tournament.endDate ? formateDate(tournament.endDate) : 'No End Date'}
-							</p>
-						</Card.Description>
-					</Card.Header>
-					<Card.Footer>
-						<p>The tournament was marked complete at {formateDate(tournament.updatedAt)}.</p>
-					</Card.Footer>
-				</Card.Root>
-			{/each}
-		</section>
-	{/if}
+<section class="space-y-12 pb-12">
+  <HeadingCreator
+    title="Welcome, {session?.user.name || 'Guest'}"
+    description="Explore and participate in active tournaments."
+  />
+
+  <!-- Active Tournaments Section -->
+  <div class="space-y-6">
+    <div class="flex items-center justify-between">
+      <HeadingCreator title="Active Tournaments" description="Live and upcoming events" type="h2" />
+      {#if activeTournaments.length > 0}
+        <Badge variant="secondary" class="border-chart-2/20 bg-chart-2/10 text-chart-2">
+          {activeTournaments.length} Live
+        </Badge>
+      {/if}
+    </div>
+
+    {#if activeTournaments.length === 0}
+      <NotAvailableBanner
+        title="No active tournaments available at the moment."
+        description="Please check back later for upcoming tournaments."
+      />
+    {:else}
+      <section class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2">
+        {#each activeTournaments as tournament (tournament.id)}
+          <TournamentCard {tournament} {session} />
+        {/each}
+      </section>
+    {/if}
+  </div>
+
+  <!-- Completed Tournaments Section -->
+  {#if completedTournaments.length > 0}
+    <div class="space-y-6 pt-6">
+      <HeadingCreator title="Completed Tournaments" description="Hall of Fame" type="h2" />
+
+      <section class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {#each completedTournaments as tournament (tournament.id)}
+          <CompleteTournamentCard {tournament} />
+        {/each}
+      </section>
+    </div>
+  {/if}
 </section>

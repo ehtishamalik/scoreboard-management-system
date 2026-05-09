@@ -1,5 +1,5 @@
 import type { InferInsertModel, InferSelectModel } from 'drizzle-orm';
-import type { tournament, participation, teams, match, user } from './schema';
+import type { tournament, participation, teams, match, user, matchSeries } from './schema';
 
 export type UserSelectModel = InferSelectModel<typeof user>;
 export type UserInsertModel = InferInsertModel<typeof user>;
@@ -16,23 +16,34 @@ export type TeamsInsertModel = InferInsertModel<typeof teams>;
 export type MatchSelectModel = InferSelectModel<typeof match>;
 export type MatchInsertModel = InferInsertModel<typeof match>;
 
+export type MatchSeriesSelectModel = InferSelectModel<typeof matchSeries>;
+export type MatchSeriesInsertModel = InferInsertModel<typeof matchSeries>;
+
 // Participation + user
 export type ParticipationsWithUsers = ParticipationSelectModel & {
-	user: UserSelectModel;
-	tournament: TournamentSelectModel;
+  user: UserSelectModel;
+  tournament: TournamentSelectModel;
 };
 
 // Team + players + tournament
 export type TeamWithPlayers = TeamsSelectModel & {
-	participationPlayerOne: ParticipationsWithUsers;
-	participationPlayerTwo: ParticipationsWithUsers;
-	tournament: TournamentSelectModel;
+  participationPlayerOne: ParticipationsWithUsers;
+  participationPlayerTwo: ParticipationsWithUsers;
+  tournament: TournamentSelectModel;
 };
 
 // Match + team details + tournament
 export type MatchWithDetails = MatchSelectModel & {
-	tournament: TournamentSelectModel;
-	team1: TeamWithPlayers;
-	team2: TeamWithPlayers;
-	winner: TeamWithPlayers | null;
+  tournament: TournamentSelectModel;
+  team1: TeamWithPlayers;
+  team2: TeamWithPlayers;
+  winner: TeamWithPlayers | null;
+};
+
+// Match + team details + tournament
+export type MatchSeriesWithDetails = MatchSeriesSelectModel & {
+  tournament: TournamentSelectModel;
+  team1: TeamsSelectModel;
+  team2: TeamsSelectModel;
+  winner: TeamsSelectModel | null;
 };

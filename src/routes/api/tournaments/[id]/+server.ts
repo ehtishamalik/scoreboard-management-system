@@ -2,7 +2,7 @@
 
 import { json } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
-import { db } from '$lib/server/db';
+import { db, dbReplica } from '$lib/server/db';
 import { tournament } from '$lib/server/db/schema';
 import { zodTournamentSchema, handleSchema } from '$lib/validation';
 import { handleError, HttpError } from '$lib/server/error';
@@ -16,28 +16,28 @@ import type { ApiResponse } from '$lib/types';
  * Example: /api/tournaments/clrvj8r7o000010m5p4n1m7x
  */
 export const GET: RequestHandler = async ({ params }) => {
-	try {
-		const result = await db.select().from(tournament).where(eq(tournament.id, params.id));
+  try {
+    const result = await dbReplica.select().from(tournament).where(eq(tournament.id, params.id));
 
-		if (result.length === 0) {
-			throw new HttpError(404, 'No tournament with the given ID.', 'Tournament not found');
-		}
+    if (result.length === 0) {
+      throw new HttpError(404, 'No tournament with the given ID.', 'Tournament not found');
+    }
 
-		const response: ApiResponse<TournamentSelectModel> = {
-			success: true,
-			data: result[0]
-		};
+    const response: ApiResponse<TournamentSelectModel> = {
+      success: true,
+      data: result[0]
+    };
 
-		return json(response, { status: 200 });
-	} catch (error) {
-		const { status, body } = handleError(error, 'Error getting tournament with ID');
+    return json(response, { status: 200 });
+  } catch (error) {
+    const { status, body } = handleError(error, 'Error getting tournament with ID');
 
-		const response: ApiResponse<TournamentSelectModel> = {
-			success: false,
-			error: body
-		};
-		return json(response, { status });
-	}
+    const response: ApiResponse<TournamentSelectModel> = {
+      success: false,
+      error: body
+    };
+    return json(response, { status });
+  }
 };
 
 /**
@@ -45,47 +45,47 @@ export const GET: RequestHandler = async ({ params }) => {
  * Example: /api/tournaments/clrvj8r7o000010m5p4n1m7x
  */
 export const PUT: RequestHandler = async ({ params, request }) => {
-	try {
-		const body = await request.json();
+  try {
+    const body = await request.json();
 
-		const { success, data, errors } = handleSchema(zodTournamentSchema, body);
+    const { success, data, errors } = handleSchema(zodTournamentSchema, body);
 
-		if (!success || !data) {
-			throw new HttpError(400, `${errors.join(', ')}.`, 'Invalid tournament data');
-		}
+    if (!success || !data) {
+      throw new HttpError(400, `${errors.join(', ')}.`, 'Invalid tournament data');
+    }
 
-		const updatedTournament = await db
-			.update(tournament)
-			.set({
-				name: data.name,
-				startDate: data.startDate,
-				endDate: data.endDate,
-				isActive: data.isActive,
-				isFinalized: data.isFinalized,
-				updatedAt: new Date()
-			})
-			.where(eq(tournament.id, params.id))
-			.returning();
+    const updatedTournament = await db
+      .update(tournament)
+      .set({
+        name: data.name,
+        startDate: data.startDate,
+        endDate: data.endDate,
+        isActive: data.isActive,
+        isFinalized: data.isFinalized,
+        isStarted: data.isStarted
+      })
+      .where(eq(tournament.id, params.id))
+      .returning();
 
-		if (updatedTournament.length === 0) {
-			throw new HttpError(404, 'No tournament with the given ID.', 'Tournament not found');
-		}
+    if (updatedTournament.length === 0) {
+      throw new HttpError(404, 'No tournament with the given ID.', 'Tournament not found');
+    }
 
-		const response: ApiResponse<TournamentSelectModel> = {
-			success: true,
-			data: updatedTournament[0]
-		};
+    const response: ApiResponse<TournamentSelectModel> = {
+      success: true,
+      data: updatedTournament[0]
+    };
 
-		return json(response);
-	} catch (error) {
-		const { status, body } = handleError(error, 'Error updating tournament');
+    return json(response);
+  } catch (error) {
+    const { status, body } = handleError(error, 'Error updating tournament');
 
-		const response: ApiResponse<TournamentSelectModel> = {
-			success: false,
-			error: body
-		};
-		return json(response, { status });
-	}
+    const response: ApiResponse<TournamentSelectModel> = {
+      success: false,
+      error: body
+    };
+    return json(response, { status });
+  }
 };
 
 /**
@@ -93,29 +93,29 @@ export const PUT: RequestHandler = async ({ params, request }) => {
  * Example: /api/tournaments/clrvj8r7o000010m5p4n1m7x
  */
 export const DELETE: RequestHandler = async ({ params }) => {
-	try {
-		const deletedTournament = await db
-			.delete(tournament)
-			.where(eq(tournament.id, params.id))
-			.returning();
+  try {
+    const deletedTournament = await db
+      .delete(tournament)
+      .where(eq(tournament.id, params.id))
+      .returning();
 
-		if (deletedTournament.length === 0) {
-			throw new HttpError(404, 'No tournament with the given ID.', 'Tournament not found');
-		}
+    if (deletedTournament.length === 0) {
+      throw new HttpError(404, 'No tournament with the given ID.', 'Tournament not found');
+    }
 
-		const response: ApiResponse<TournamentSelectModel> = {
-			success: true,
-			data: deletedTournament[0]
-		};
+    const response: ApiResponse<TournamentSelectModel> = {
+      success: true,
+      data: deletedTournament[0]
+    };
 
-		return json(response, { status: 200 });
-	} catch (error) {
-		const { status, body } = handleError(error, 'Error deleting tournament');
+    return json(response, { status: 200 });
+  } catch (error) {
+    const { status, body } = handleError(error, 'Error deleting tournament');
 
-		const response: ApiResponse<TournamentSelectModel> = {
-			success: false,
-			error: body
-		};
-		return json(response, { status });
-	}
+    const response: ApiResponse<TournamentSelectModel> = {
+      success: false,
+      error: body
+    };
+    return json(response, { status });
+  }
 };

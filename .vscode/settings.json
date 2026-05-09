@@ -1,29 +1,35 @@
 {
-	// Set Prettier as the default formatter for TypeScript and TSX files
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-
-	// Enable format on save
 	"editor.formatOnSave": true,
+
+	"editor.tabSize": 2,
+	"editor.insertSpaces": true,
+	"editor.detectIndentation": false,
+
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "explicit"
 	},
 
-	// Enable Prettier for specific languages
 	"[typescript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
+
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 
-	// Use VSCode's built-in formatter for CSS files
-	"[css]": {
-		"editor.defaultFormatter": "vscode.css-language-features"
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 
-	// Optional: Customize Prettier settings
-	"prettier.singleQuote": false,
-	"prettier.trailingComma": "es5",
-	"prettier.tabWidth": 2,
-	"prettier.semi": true
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+
+	"[svelte]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+
+	"[css]": {
+		"editor.defaultFormatter": "vscode.css-language-features"
+	}
 }

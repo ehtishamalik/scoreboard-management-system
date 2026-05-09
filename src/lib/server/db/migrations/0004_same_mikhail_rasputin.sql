@@ -1,0 +1,1 @@
+ALTER TABLE "tournament" ADD COLUMN "is_single_player" boolean DEFAULT false NOT NULL;

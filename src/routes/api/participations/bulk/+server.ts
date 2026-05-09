@@ -11,28 +11,28 @@ import type { ParticipationSelectModel } from '$lib/server/db/types';
 import type { ApiResponse } from '$lib/types';
 
 export const POST: RequestHandler = async ({ request }) => {
-	try {
-		const body = await request.json();
+  try {
+    const body = await request.json();
 
-		const { success, data, errors } = handleSchemaBulk(zodBulkParticipationSchema, body);
+    const { success, data, errors } = handleSchemaBulk(zodBulkParticipationSchema, body);
 
-		if (!success || !data) {
-			throw new HttpError(400, `${errors.join(', ')}.`, 'Invalid bulk participation data');
-		}
+    if (!success || !data) {
+      throw new HttpError(400, `${errors.join(', ')}.`, 'Invalid bulk participation data');
+    }
 
-		const newParticipations = await db.insert(participation).values(data).returning();
+    const newParticipations = await db.insert(participation).values(data).returning();
 
-		const response: ApiResponse<ParticipationSelectModel[]> = {
-			success: true,
-			data: newParticipations
-		};
-		return json(response, { status: 201 });
-	} catch (error) {
-		const { status, body } = handleError(error, 'Error creating bulk participations');
-		const response: ApiResponse<ParticipationSelectModel[]> = {
-			success: false,
-			error: body
-		};
-		return json(response, { status });
-	}
+    const response: ApiResponse<ParticipationSelectModel[]> = {
+      success: true,
+      data: newParticipations
+    };
+    return json(response, { status: 201 });
+  } catch (error) {
+    const { status, body } = handleError(error, 'Error creating bulk participations');
+    const response: ApiResponse<ParticipationSelectModel[]> = {
+      success: false,
+      error: body
+    };
+    return json(response, { status });
+  }
 };
