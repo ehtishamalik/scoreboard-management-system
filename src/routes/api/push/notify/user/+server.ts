@@ -14,7 +14,7 @@ import type { RequestHandler } from './$types';
 import { HttpError } from '$lib/server/error';
 
 webpush.setVapidDetails(
-  'mailto:ehtisham@lycusinc.com',
+  'mailto:malikehtishamali334@hotmail.com',
   envPublic.PUBLIC_VAPID_KEY!,
   env.PRIVATE_VAPID_KEY
 );

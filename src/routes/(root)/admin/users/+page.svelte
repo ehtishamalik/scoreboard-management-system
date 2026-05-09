@@ -76,8 +76,8 @@
       return;
     }
 
-    if (!email.endsWith('@lycusinc.com')) {
-      toast.error('Email must be a @lycusinc.com address.');
+    if (!email.endsWith('@ehtishamalik.com')) {
+      toast.error('Email must be a @ehtishamalik.com address.');
       return;
     }
 
@@ -166,7 +166,7 @@
               type="email"
               id={`email-${id}`}
               name="email"
-              placeholder="m@lycusinc.com"
+              placeholder="m@ehtishamalik.com"
               autocomplete="off"
               required
             />

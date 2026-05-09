@@ -7,16 +7,16 @@
 
 <svelte:head>
   <!-- Basic SEO -->
-  <title>Lycus Score – Tournament Management System</title>
+  <title>Score – Tournament Management System</title>
   <meta
     name="description"
-    content="Lycus Score is a powerful tournament management system for esports. Organize teams, schedule matches, track real-time scores, and view detailed statistics."
+    content="Score is a powerful tournament management system for esports. Organize teams, schedule matches, track real-time scores, and view detailed statistics."
   />
   <meta
     name="keywords"
-    content="tournament management, esports, team registration, match scheduling, real-time scores, tournament app, lycuscore"
+    content="tournament management, esports, team registration, match scheduling, real-time scores, tournament app, score"
   />
-  <meta name="author" content="Lycus Inc." />
+  <meta name="author" content="ehtishamalik" />
 
   <!-- Favicon & App Icons -->
   <link rel="icon" href={favicon} />
@@ -26,29 +26,29 @@
   <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Open Graph (Facebook, LinkedIn, etc.) -->
-  <meta property="og:title" content="Lycus Score – Tournament Management System" />
+  <meta property="og:title" content="Score – Tournament Management System" />
   <meta
     property="og:description"
-    content="Manage esports tournaments effortlessly with Lycus Score. Register teams, schedule matches, update scores in real time, and track stats."
+    content="Manage esports tournaments effortlessly with Score. Register teams, schedule matches, update scores in real time, and track stats."
   />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://score.lycusinc.com/" />
-  <meta property="og:image" content="https://score.lycusinc.com/apple-touch-icon.png" />
+  <meta property="og:url" content="https://score.ehtishamalik.com/" />
+  <meta property="og:image" content="https://score.ehtishamalik.com/apple-touch-icon.png" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Lycus Score – Tournament Management System" />
+  <meta name="twitter:title" content="Score – Tournament Management System" />
   <meta
     name="twitter:description"
     content="Organize and manage esports tournaments with team registration, scheduling, and live score updates."
   />
-  <meta name="twitter:image" content="https://score.lycusinc.com/apple-touch-icon.png" />
+  <meta name="twitter:image" content="https://score.ehtishamalik.com/apple-touch-icon.png" />
 
   <!-- PWA for iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="lycuscore" />
+  <meta name="apple-mobile-web-app-title" content="score" />
 
   <!-- iOS Splash Screens (Logo when loading) -->
   <link

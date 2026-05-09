@@ -75,7 +75,7 @@
   </Sidebar.SidebarHeader>
   <Sidebar.Content>
     <Sidebar.Group>
-      <Sidebar.GroupLabel>Lycuscore</Sidebar.GroupLabel>
+      <Sidebar.GroupLabel>dashboard</Sidebar.GroupLabel>
       <Sidebar.GroupContent>
         <Sidebar.Menu>
           {#each items as item (item.title)}
